@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameVault</title>
+    <title>GameVault - The Ultimate Marketplace for Gamers</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* Paste ALL the CSS I gave you here */
         :root {
             --bg-main: #090d16;
             --bg-secondary: #0f1523;
@@ -18,152 +17,514 @@
             --green: #10b981;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
+            --badge-bg: rgba(99, 102, 241, 0.15);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.5; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
-        
-        .promo-bar { background: linear-gradient(90deg, #312e81, #4f46e5, #7e22ce); color: #fff; text-align: center; padding: 0.55rem 1rem; font-size: 0.85rem; font-weight: 600; display: flex; justify-content: center; align-items: center; gap: 0.75rem; }
-        .promo-bar span.badge { background: #fff; color: #090d16; padding: 0.15rem 0.55rem; border-radius: 4px; font-weight: 800; font-size: 0.75rem; }
-        
-        header { background: rgba(9, 13, 22, 0.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 0.9rem 1.5rem; }
-        .nav-container { max-width: 1320px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
-        .brand-left { display: flex; align-items: center; gap: 1.5rem; }
-        .logo { font-size: 1.6rem; font-weight: 900; letter-spacing: -0.03em; display: flex; align-items: center; gap: 0.4rem; }
-        .logo-icon { width: 34px; height: 34px; background: linear-gradient(135deg, #6366f1, #a855f7); border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; color: #fff; }
-        .logo span { color: var(--accent); }
-        .nav-links { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
-        .nav-tab { padding: 0.5rem 0.9rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: 0.2s; border: 1px solid transparent; background: transparent; }
-        .nav-tab:hover, .nav-tab.active { color: var(--text-main); background: var(--card-bg); border-color: var(--border); }
-        .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
-        .btn { background: var(--accent); color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .btn:hover { background: var(--accent-hover); }
-        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text-main); }
-        .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-        .nav-actions .btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
-        .mobile-menu-btn { display: none; background: none; border: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer; }
-        
-        @media (max-width: 768px) { .nav-links { display: none; } .mobile-menu-btn { display: block; } }
-        
-        .hero { position: relative; padding: 4rem 1.5rem; text-align: center; overflow: hidden; background: radial-gradient(circle at top, rgba(99, 102, 241, 0.1), transparent 60%); }
-        .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; line-height: 1.1; }
-        .hero p { color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem; font-size: 1.1rem; }
-        .search-bar { max-width: 500px; margin: 0 auto; position: relative; }
-        .search-bar input { width: 100%; padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text-main); font-size: 1rem; outline: none; }
-        .search-bar input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2); }
-        
-        .categories { padding: 2rem 1.5rem; max-width: 1320px; margin: 0 auto; }
-        .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; }
-        .cat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center; transition: 0.2s; cursor: pointer; }
-        .cat-card:hover { background: var(--card-hover); transform: translateY(-2px); border-color: var(--accent); }
-        .cat-icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
-        .cat-name { font-weight: 600; font-size: 0.95rem; }
-        
-        .products { padding: 2rem 1.5rem; max-width: 1320px; margin: 0 auto; }
-        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
-        .product-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: 0.2s; }
-        .product-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-        .prod-img { height: 160px; background: #1a2336; display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
-        .prod-body { padding: 1rem; }
-        .prod-title { font-weight: 700; margin-bottom: 0.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .prod-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; }
-        .price { font-weight: 800; color: var(--green); font-size: 1.1rem; }
-        .badge-stock { font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 4px; background: rgba(16, 185, 129, 0.15); color: var(--green); }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Top Promo Bar */
+        .promo-bar {
+            background: linear-gradient(90deg, #312e81, #4f46e5, #7e22ce);
+            color: #fff;
+            text-align: center;
+            padding: 0.55rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: block;
+        }
+
+        /* Header / Navbar */
+        header {
+            background: rgba(9, 13, 22, 0.92);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.9rem 1.5rem;
+        }
+
+        .nav-container {
+            max-width: 1320px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .brand-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 0.5rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
+            background: transparent;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            color: var(--text-main);
+            background: var(--card-bg);
+            border-color: var(--border);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: #fff;
+            padding: 0.6rem 1.15rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            background: var(--card-hover);
+        }
+
+        /* Hero Banner */
+        .hero {
+            position: relative;
+            padding: 3.5rem 1.5rem 2.5rem;
+            text-align: center;
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.22), transparent 65%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-inner {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-sub {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 760px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.9rem 1.25rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+        }
+
+        /* Quick Category Action Cards */
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            max-width: 1100px;
+            margin: 0 auto 3rem;
+        }
+
+        .quick-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .quick-card:hover {
+            border-color: var(--accent);
+            background: var(--card-hover);
+            transform: translateY(-2px);
+        }
+
+        .quick-icon {
+            font-size: 1.8rem;
+            background: var(--badge-bg);
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quick-info h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .quick-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.65rem;
+            font-weight: 800;
+        }
+
+        /* Trending Cards Grid */
+        .trending-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .trend-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .trend-card:hover {
+            border-color: var(--accent);
+            background: var(--card-hover);
+            transform: translateY(-3px);
+        }
+
+        .trend-top {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .trend-top img {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            object-fit: contain;
+            background: #090d16;
+            padding: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .trend-title h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .trend-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .price {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--green);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
 
     <!-- Top Promo Bar -->
-    <div class="promo-bar">
-        <span class="badge">HOT</span>
-        <span>Winter Sale: 20% OFF all WoW Boosting Services!</span>
-    </div>
+    <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="promo-bar">
+        🔥 Winter Sale: 20% OFF all GameVault & Community Trading Services! Join our 208K+ Group Now →
+    </a>
 
-    <!-- Header / Navbar -->
+    <!-- Sticky Header -->
     <header>
         <div class="nav-container">
             <div class="brand-left">
-                <div class="logo">
-                    <div class="logo-icon">GV</div>
-                    Game<span>Vault</span>
-                </div>
+                <a href="https://game-vault1.github.io/game-vault/" class="logo">
+                    <span class="logo-icon">GV</span> Game<span>Vault</span>
+                </a>
+                <nav class="nav-links">
+                    <a href="https://game-vault1.github.io/game-vault/" class="nav-tab active">Home</a>
+                    <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="nav-tab">Accounts</a>
+                    <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="nav-tab">Keys</a>
+                    <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="nav-tab">Boosting</a>
+                    <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="nav-tab">Currencies</a>
+                </nav>
             </div>
-            
-            <nav class="nav-links">
-                <button class="nav-tab active">Home</button>
-                <button class="nav-tab">Accounts</button>
-                <button class="nav-tab">Keys</button>
-                <button class="nav-tab">Boosting</button>
-                <button class="nav-tab">Currencies</button>
-            </nav>
-
             <div class="nav-actions">
-                <button class="btn btn-outline">Log In</button>
-                <button class="btn">Sign Up</button>
-                <button class="mobile-menu-btn">☰</button>
+                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn btn-outline">Log In</a>
+                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn">Join 208K+ Group</a>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>The Ultimate Marketplace for Gamers</h1>
-        <p>Buy & sell game accounts, keys, gold, and boosting services instantly. Secure, fast, and trusted by 50k+ users.</p>
-        
-        <div class="search-bar">
-            <input type="text" placeholder="Search for games, items, or services...">
+        <div class="hero-inner">
+            <h1>The Ultimate Marketplace <span>for Gamers</span></h1>
+            <p class="hero-sub">
+                Buy & sell game accounts, keys, gold, and boosting services instantly. Secure, fast, and trusted by 208k+ users.
+            </p>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for games, items, or services...">
+            </div>
+
+            <!-- Clickable Service Action Cards -->
+            <div class="quick-grid">
+                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="quick-card">
+                    <div class="quick-icon">🎮</div>
+                    <div class="quick-info">
+                        <h3>Game Accounts</h3>
+                        <p>Verified full-access</p>
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="quick-card">
+                    <div class="quick-icon">🔑</div>
+                    <div class="quick-info">
+                        <h3>CD Keys</h3>
+                        <p>Instant global keys</p>
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="quick-card">
+                    <div class="quick-icon">⚔️</div>
+                    <div class="quick-info">
+                        <h3>Boosting</h3>
+                        <p>Pro rank up services</p>
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="quick-card">
+                    <div class="quick-icon">💰</div>
+                    <div class="quick-info">
+                        <h3>In-Game Gold</h3>
+                        <p>Cheapest currency deals</p>
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- Categories -->
-    <section class="categories">
-        <div class="cat-grid">
-            <div class="cat-card"><span class="cat-icon">🎮</span><span class="cat-name">Game Accounts</span></div>
-            <div class="cat-card"><span class="cat-icon">🔑</span><span class="cat-name">CD Keys</span></div>
-            <div class="cat-card"><span class="cat-icon">⚔️</span><span class="cat-name">Boosting</span></div>
-            <div class="cat-card"><span class="cat-icon">💰</span><span class="cat-name">In-Game Gold</span></div>
-        </div>
-    </section>
-
-    <!-- Featured Products -->
-    <section class="products">
+    <!-- Main Container -->
+    <div class="container">
         <div class="section-header">
             <h2>Trending Now 🔥</h2>
-            <a href="#" style="color: var(--accent); font-size: 0.9rem;">View All →</a>
+            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" style="color:var(--accent); font-weight:700;">View All →</a>
         </div>
 
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="prod-img">WoW Icon</div>
-                <div class="prod-body">
-                    <div class="prod-title">WoW Classic Era - Level 60 Boost</div>
-                    <div class="prod-meta"><span class="price">$25.00</span><span class="badge-stock">In Stock</span></div>
+        <!-- Clickable Trending Cards -->
+        <div class="trending-grid">
+            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="trend-card">
+                <div class="trend-top">
+                    <img src="https://cdn.gameboost.com/games/logos/world-of-warcraft.png" alt="WoW">
+                    <div class="trend-title">
+                        <h3>WoW Classic Era</h3>
+                        <p style="font-size:0.8rem; color:var(--text-muted);">Level 60 Boosted Account</p>
+                    </div>
                 </div>
-            </div>
-            <div class="product-card">
-                <div class="prod-img">Lol Icon</div>
-                <div class="prod-body">
-                    <div class="prod-title">League of Legends - Diamond Account</div>
-                    <div class="prod-meta"><span class="price">$120.00</span><span class="badge-stock">Instant Delivery</span></div>
+                <div class="trend-price-row">
+                    <span class="price">$25.00</span>
+                    <span class="status-badge">In Stock</span>
                 </div>
-            </div>
-            <div class="product-card">
-                <div class="prod-img">Genshin Icon</div>
-                <div class="prod-body">
-                    <div class="prod-title">Genshin Impact - AR 55 + Primogems</div>
-                    <div class="prod-meta"><span class="price">$45.00</span><span class="badge-stock">Limited</span></div>
+            </a>
+
+            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="trend-card">
+                <div class="trend-top">
+                    <img src="https://cdn.gameboost.com/games/logos/league-of-legends.png" alt="LoL">
+                    <div class="trend-title">
+                        <h3>League of Legends</h3>
+                        <p style="font-size:0.8rem; color:var(--text-muted);">Diamond IV Account</p>
+                    </div>
                 </div>
-            </div>
-            <div class="product-card">
-                <div class="prod-img">CS2 Icon</div>
-                <div class="prod-body">
-                    <div class="prod-title">CS2 Prime Status Key</div>
-                    <div class="prod-meta"><span class="price">$15.00</span><span class="badge-stock">Global</span></div>
+                <div class="trend-price-row">
+                    <span class="price">$120.00</span>
+                    <span class="status-badge">Instant Delivery</span>
                 </div>
-            </div>
+            </a>
+
+            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="trend-card">
+                <div class="trend-top">
+                    <img src="https://cdn.gameboost.com/games/logos/genshin-impact.png" alt="Genshin">
+                    <div class="trend-title">
+                        <h3>Genshin Impact</h3>
+                        <p style="font-size:0.8rem; color:var(--text-muted);">AR 55 + Primogems</p>
+                    </div>
+                </div>
+                <div class="trend-price-row">
+                    <span class="price">$45.00</span>
+                    <span class="status-badge">Verified</span>
+                </div>
+            </a>
+
+            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="trend-card">
+                <div class="trend-top">
+                    <img src="https://cdn.gameboost.com/games/logos/counter-strike-2.png" alt="CS2">
+                    <div class="trend-title">
+                        <h3>Counter Strike 2</h3>
+                        <p style="font-size:0.8rem; color:var(--text-muted);">CS2 Prime Status Key</p>
+                    </div>
+                </div>
+                <div class="trend-price-row">
+                    <span class="price">$15.00</span>
+                    <span class="price-old" style="text-decoration:line-through; font-size:0.8rem; color:var(--text-muted);">$20.00</span>
+                    <span class="status-badge">Global</span>
+                </div>
+            </a>
         </div>
-    </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 GameVault. All rights reserved.</p>
+        <p>Administered via our official <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">208k+ Facebook Community</a>.</p>
+    </footer>
 
 </body>
 </html>
