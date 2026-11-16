@@ -3,1251 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameVault - Buy Game Accounts, Keys, Currencies & Boosting</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Game-Vault | Instant Digital Key Delivery</title>
+    <meta name="description" content="The best prices on Steam, Epic, Xbox, and PlayStation keys. Instant delivery.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* --- CSS VARIABLES & RESET --- */
         :root {
-            --bg-main: #090d16;
-            --bg-secondary: #0f1523;
-            --card-bg: #141c2e;
-            --card-hover: #1b263e;
-            --border: #23304c;
-            --accent: #6366f1;
-            --accent-hover: #4f46e5;
-            --green: #10b981;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --badge-bg: rgba(99, 102, 241, 0.15);
+            --bg-body: #0f0f13;
+            --bg-card: #1a1a24;
+            --bg-card-hover: #23232f;
+            --primary: #7c4dff;
+            --primary-hover: #651fff;
+            --text-main: #ffffff;
+            --text-muted: #9e9e9e;
+            --accent-green: #00e676;
+            --border-color: #2a2a35;
+            --font-main: 'Inter', sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: var(--bg-main);
+            background-color: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.5;
-            overflow-x: hidden;
+            font-family: var(--font-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
 
-        /* Top Promo Bar */
-        .promo-bar {
-            background: linear-gradient(90deg, #312e81, #4f46e5, #7e22ce);
-            color: #fff;
-            text-align: center;
-            padding: 0.55rem 1rem;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .promo-bar span.badge {
-            background: #fff;
-            color: #090d16;
-            padding: 0.15rem 0.55rem;
-            border-radius: 4px;
-            font-weight: 800;
-            font-size: 0.75rem;
-        }
-
-        /* Header / Navbar */
-        header {
-            background: rgba(9, 13, 22, 0.92);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 0.9rem 1.5rem;
-        }
-
-        .nav-container {
-            max-width: 1320px;
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- HEADER --- */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .brand-left {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            background: rgba(15, 15, 19, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
         }
 
         .logo {
-            font-size: 1.6rem;
-            font-weight: 900;
-            letter-spacing: -0.03em;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--primary); }
+
+        nav ul {
             display: flex;
-            align-items: center;
-            gap: 0.4rem;
+            gap: 30px;
         }
 
-        .logo-icon {
-            width: 34px;
-            height: 34px;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            border-radius: 8px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.1rem;
-            color: #fff;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-tab {
-            padding: 0.5rem 0.9rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
+        nav a {
+            font-weight: 500;
             color: var(--text-muted);
-            cursor: pointer;
-            transition: 0.2s;
-            border: 1px solid transparent;
+        }
+
+        nav a:hover { color: var(--text-main); }
+
+        .header-actions button {
             background: transparent;
-        }
-
-        .nav-tab:hover, .nav-tab.active {
+            border: 1px solid var(--border-color);
             color: var(--text-main);
-            background: var(--card-bg);
-            border-color: var(--border);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .btn {
-            background: var(--accent);
-            color: #fff;
-            padding: 0.6rem 1.15rem;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.88rem;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
             cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
         }
 
-        .btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
+        .btn-primary-header:hover {
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
-        .btn-outline {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent);
-            background: var(--card-hover);
-        }
-
-        /* Hero Banner */
+        /* --- HERO SECTION --- */
         .hero {
-            position: relative;
-            padding: 3.5rem 1.5rem 2.5rem;
             text-align: center;
-            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.22), transparent 65%);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .hero-inner {
-            max-width: 980px;
-            margin: 0 auto;
-        }
-
-        .trust-pills {
-            display: inline-flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.6rem 1.2rem;
-            background: rgba(20, 28, 46, 0.8);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1.2rem;
-            border-radius: 999px;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .trust-pills span b {
-            color: var(--green);
+            padding: 80px 0 60px;
+            background: radial-gradient(circle at 50% 0%, #2a2a35 0%, var(--bg-body) 60%);
         }
 
         .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 900;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.75rem;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(90deg, #818cf8, #c084fc);
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #fff, #b388ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-sub {
+        .hero p {
             color: var(--text-muted);
-            font-size: 1.05rem;
-            max-width: 760px;
-            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Services Icon Bar */
-        .service-strip {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
-            gap: 0.75rem;
-            max-width: 1150px;
+        .search-container {
+            max-width: 600px;
             margin: 0 auto;
-        }
-
-        .service-pill {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 0.9rem 0.75rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            transition: 0.2s;
-            cursor: pointer;
-        }
-
-        .service-pill:hover, .service-pill.active-service {
-            border-color: var(--accent);
-            background: var(--card-hover);
-            transform: translateY(-2px);
-        }
-
-        .service-pill img {
-            width: 36px;
-            height: 36px;
-            object-fit: contain;
-        }
-
-        .service-pill span {
-            font-weight: 700;
-            font-size: 0.88rem;
-        }
-
-        .service-pill small {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-        }
-
-        /* Main Container */
-        .container {
-            max-width: 1320px;
-            margin: 0 auto;
-            padding: 2.5rem 1.5rem;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .section-header h2 {
-            font-size: 1.65rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            margin-top: 0.25rem;
-        }
-
-        /* Search & A-Z Filter Bar (Accounts Section) */
-        .filter-box {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.25rem;
-            margin-bottom: 2rem;
-        }
-
-        .search-row {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
+            position: relative;
         }
 
         .search-input {
-            flex: 1;
-            min-width: 240px;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-main);
-            padding: 0.8rem 1rem;
-            border-radius: 10px;
-            font-size: 0.95rem;
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: white;
+            font-size: 1rem;
             outline: none;
+            transition: 0.3s;
         }
 
         .search-input:focus {
-            border-color: var(--accent);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.2);
         }
 
-        .az-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.35rem;
-        }
-
-        .az-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            padding: 0.35rem 0.65rem;
-            border-radius: 6px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.15s;
-        }
-
-        .az-btn:hover, .az-btn.active {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
-        }
-
-        /* Trending / Popular Games Cards with Sub-links */
-        .popular-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 1.15rem;
-            margin-bottom: 3rem;
-        }
-
-        .popular-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.2rem;
-            transition: 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 1rem;
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 11px 25px;
+            border-radius: 40px;
+            font-weight: 600;
             cursor: pointer;
         }
 
-        .popular-card:hover {
-            border-color: var(--accent);
-            background: var(--card-hover);
-            transform: translateY(-3px);
+        .search-btn:hover { background: var(--primary-hover); }
+
+        /* --- GAMES GRID --- */
+        .section-title {
+            font-size: 1.5rem;
+            margin: 60px 0 30px;
+            padding-left: 10px;
+            border-left: 4px solid var(--primary);
         }
 
-        .pop-top {
-            display: flex;
-            align-items: center;
-            gap: 0.9rem;
-        }
-
-        .pop-top img {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            object-fit: contain;
-            background: #090d16;
-            padding: 4px;
-            border: 1px solid var(--border);
-        }
-
-        .pop-title h3 {
-            font-size: 1.08rem;
-            font-weight: 700;
-        }
-
-        .stock-tag {
-            display: inline-block;
-            font-size: 0.76rem;
-            color: var(--green);
-            font-weight: 600;
-            margin-top: 0.15rem;
-        }
-
-        .sub-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-        }
-
-        .sub-tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border);
-            padding: 0.3rem 0.65rem;
-            border-radius: 6px;
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        /* Full 200+ Game Accounts Directory Grid */
-        .directory-grid {
+        .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-            gap: 0.75rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 25px;
+            padding-bottom: 80px;
         }
 
-        .dir-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 0.8rem 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
-            transition: 0.15s;
-            cursor: pointer;
-        }
-
-        .dir-item:hover {
-            border-color: var(--accent);
-            background: var(--card-hover);
-        }
-
-        .dir-name {
-            font-size: 0.88rem;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .dir-count {
-            background: var(--badge-bg);
-            color: #818cf8;
-            font-size: 0.74rem;
-            font-weight: 700;
-            padding: 0.2rem 0.5rem;
-            border-radius: 6px;
-            flex-shrink: 0;
-        }
-
-        /* Game Keys Horizontal Grid */
-        .keys-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: 1.15rem;
-            margin-bottom: 3.5rem;
-        }
-
-        .key-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
+        .game-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             overflow: hidden;
-            transition: 0.2s;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
         }
 
-        .key-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            border-color: var(--primary);
         }
 
-        .key-img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            background: #090d16;
-        }
-
-        .key-body {
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-            flex: 1;
-        }
-
-        .key-meta {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        .key-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-        }
-
-        .key-price-row {
-            margin-top: auto;
-            padding-top: 0.6rem;
+        .card-image {
+            height: 160px;
+            background: #252530;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            color: #555;
+            font-size: 0.9rem;
+            position: relative;
+        }
+        
+        /* Placeholder styling */
+        .card-image::after {
+            content: "GAME ART";
+            opacity: 0.3;
         }
 
-        .price-now {
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-title {
+            font-weight: 700;
             font-size: 1.1rem;
-            font-weight: 800;
-            color: #fff;
+            margin-bottom: 5px;
         }
 
-        .price-old {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-decoration: line-through;
-        }
-
-        .discount-badge {
-            margin-left: auto;
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--green);
-            font-size: 0.75rem;
-            font-weight: 800;
-            padding: 0.2rem 0.45rem;
-            border-radius: 5px;
-        }
-
-        /* Bento Features Grid */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 3.5rem;
-        }
-
-        .bento-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-
-        .bento-card img {
-            width: 100%;
-            max-height: 140px;
-            object-fit: contain;
-            border-radius: 8px;
-        }
-
-        .bento-card h3 {
-            font-size: 1.15rem;
-            font-weight: 800;
-        }
-
-        .bento-card p {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-        }
-
-        /* Reviews Grid */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1rem;
-            margin-bottom: 3.5rem;
-        }
-
-        .review-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .review-user {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .stars {
-            color: #10b981;
-            font-weight: 800;
-        }
-
-        .review-text {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-        }
-
-        .review-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
+        .price-row {
             margin-top: auto;
-        }
-
-        .r-badge {
-            font-size: 0.7rem;
-            background: rgba(16, 185, 129, 0.12);
-            color: var(--green);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-
-        /* Numbers / Stats Section */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.15rem;
-            margin-bottom: 3.5rem;
-        }
-
-        .stat-box {
-            background: linear-gradient(180deg, var(--card-bg), var(--bg-secondary));
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .stat-box h4 {
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--accent);
-            margin-bottom: 0.35rem;
-        }
-
-        .stat-box p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-        }
-
-        /* Account Safety & FAQ Section */
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1rem;
-            margin-bottom: 3.5rem;
-        }
-
-        .faq-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.35rem;
-        }
-
-        .faq-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .faq-card p {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            padding: 3rem 1.5rem 2rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        .footer-inner {
-            max-width: 1320px;
-            margin: 0 auto;
-        }
-
-        .footer-links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .footer-col h4 {
-            color: #fff;
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-col ul {
-            list-style: none;
             display: flex;
-            flex-direction: column;
-            gap: 0.45rem;
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+            gap: 10px;
+            margin-bottom: 15px;
         }
 
+        .current-price {
+            color: var(--accent-green);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .btn-buy {
+            width: 100%;
+            padding: 12px;
+            background: #2a2a35;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .game-card:hover .btn-buy {
+            background: var(--primary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #0a0a0e;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a:hover { color: var(--primary); }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            header { padding: 0.75rem 1rem; }
-            .container { padding: 1.75rem 1rem; }
+            .hero h1 { font-size: 2.5rem; }
+            nav { display: none; } /* Hide nav on mobile for simplicity */
+            .header-actions { display: block; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Promo Banner -->
-    <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="promo-bar">
-        <span class="badge">LIVE</span>
-        <span>Buy & Sell Verified Gaming Accounts in our 208,000+ Member Community — Instant P2P Handover!</span>
-    </a>
-
-    <!-- Sticky Header -->
-    <header>
-        <div class="nav-container">
-            <div class="brand-left">
-                <a href="#" class="logo">
-                    <span class="logo-icon">GV</span> Game<span>Vault</span>
-                </a>
-                <nav class="nav-links">
-                    <button class="nav-tab active" onclick="scrollToSection('accounts-hub')">Accounts (200+ Games)</button>
-                    <button class="nav-tab" onclick="scrollToSection('popular-games')">Popular Games</button>
-                    <button class="nav-tab" onclick="scrollToSection('game-keys')">Game Keys</button>
-                    <button class="nav-tab" onclick="scrollToSection('reviews-sec')">Reviews</button>
-                    <button class="nav-tab" onclick="scrollToSection('faq-sec')">Account Rules & FAQ</button>
-                </nav>
-            </div>
-            <div class="nav-actions">
-                <button class="btn btn-outline" onclick="scrollToSection('accounts-hub')">Sell Account</button>
-                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn">Join 208K+ Group</a>
-            </div>
+    <!-- Header -->
+    <header class="container">
+        <a href="#" class="logo">Game<span>-Vault</span></a>
+        <nav>
+            <ul>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Keys</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="btn-primary-header">Login</button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-inner">
-            <div class="trust-pills">
-                <span><b>✔</b> Instant Delivery</span>
-                <span><b>✔</b> 24/7 Human Support</span>
-                <span><b>✔</b> Full Email Access</span>
-                <span><b>★ 4.9/5</b> (208K+ Community Members)</span>
-            </div>
-            <h1>Buy Gaming <span>Accounts for Sale</span></h1>
-            <p class="hero-sub">
-                Buy game accounts for 200+ titles on GameVault, from Fortnite, Clash Royale, and Valorant to Roblox and Clash of Clans, with ranks, skins, and progress ready to explore by game.
-            </p>
-
-            <!-- Official GameVault Service Icons Strip -->
-            <div class="service-strip">
-                <a href="https://gameboost.com/services/game-accounts" target="_blank" class="service-pill active-service">
-                    <img src="https://cdn.gameboost.com/static/game-services/accounts.webp" alt="Accounts">
-                    <span>Accounts</span>
-                    <small>22.8K+ in stock</small>
-                </a>
-                <a href="https://gameboost.com/services/game-currencies" target="_blank" class="service-pill">
-                    <img src="https://cdn.gameboost.com/static/game-services/currencies.webp" alt="Currencies">
-                    <span>Currencies</span>
-                    <small>Cheapest deals</small>
-                </a>
-                <div class="service-pill" onclick="scrollToSection('accounts-hub')">
-                    <img src="https://cdn.gameboost.com/static/game-services/top-ups.webp" alt="Top Ups">
-                    <span>Top Ups</span>
-                    <small>Instant balance</small>
-                </div>
-                <div class="service-pill" onclick="scrollToSection('accounts-hub')">
-                    <img src="https://cdn.gameboost.com/static/game-services/items.webp" alt="Items">
-                    <span>Items</span>
-                    <small>20.8K+ in stock</small>
-                </div>
-                <div class="service-pill" onclick="scrollToSection('accounts-hub')">
-                    <img src="https://cdn.gameboost.com/static/game-services/boosting.webp" alt="Boosting">
-                    <span>Boosting</span>
-                    <small>Pro rank up</small>
-                </div>
-                <div class="service-pill" onclick="scrollToSection('accounts-hub')">
-                    <img src="https://cdn.gameboost.com/static/game-services/gift-cards.webp" alt="Gift Cards">
-                    <span>Gift Cards</span>
-                    <small>All platforms</small>
-                </div>
-                <div class="service-pill" onclick="scrollToSection('game-keys')">
-                    <img src="https://cdn.gameboost.com/static/game-services/games.webp" alt="Game Keys">
-                    <span>Game Keys</span>
-                    <small>Global Steam/EA</small>
-                </div>
-            </div>
+    <!-- Hero -->
+    <section class="hero container">
+        <h1>Your Vault of Digital Games</h1>
+        <p>Instant delivery on Steam, Epic, Origin, and more. Lowest prices guaranteed.</p>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for games...">
+            <button class="search-btn">Search</button>
         </div>
     </section>
 
     <!-- Main Content -->
-    <div class="container">
-
-        <!-- Trending Game Accounts -->
-        <div class="section-header" id="popular-games">
-            <div>
-                <h2>Trending Game Accounts</h2>
-                <p>Most popular games with verified accounts, skins, and currencies ready for instant handover</p>
-            </div>
-            <button class="btn btn-outline" onclick="scrollToSection('accounts-hub')">View All Offers →</button>
+    <main class="container">
+        <h2 class="section-title">Trending Now</h2>
+        
+        <div class="games-grid" id="gamesGrid">
+            <!-- Cards will be injected by JS -->
         </div>
-
-        <div class="popular-grid" id="trending-grid"></div>
-
-        <!-- All Game Accounts A-Z Directory -->
-        <div class="section-header" id="accounts-hub">
-            <div>
-                <h2>All Game Accounts Directory (200+ Games)</h2>
-                <p>Filter by letter or search any title to browse available accounts in our community</p>
-            </div>
-        </div>
-
-        <div class="filter-box">
-            <div class="search-row">
-                <input type="text" id="gameSearch" class="search-input" placeholder="Search 200+ games (e.g., Clash Royale, Fortnite, Valorant, PUBG, Roblox)..." oninput="filterGames()">
-                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn">Join 208K+ Group</a>
-            </div>
-            <div class="az-bar" id="azBar"></div>
-        </div>
-
-        <div class="directory-grid" id="directoryGrid"></div>
-
-        <!-- Game Keys Showcase -->
-        <div class="section-header" id="game-keys">
-            <div>
-                <h2>Trending Game Keys</h2>
-                <p>Instant global digital keys for Steam, EA App, and consoles</p>
-            </div>
-            <button class="btn btn-outline" onclick="scrollToSection('game-keys')">View All Game Keys</button>
-        </div>
-
-        <div class="keys-grid">
-            <div class="key-card">
-                <img class="key-img" src="https://cdn.gameboost.com/igdb/covers/408819/cock5c.jpg" alt="EA SPORTS FC 27">
-                <div class="key-body">
-                    <span class="key-meta">Global · EA Launcher</span>
-                    <div class="key-title">EA SPORTS FC 27 (EA App)</div>
-                    <div class="key-price-row">
-                        <span class="price-now">$65.41</span>
-                        <span class="price-old">$77.13</span>
-                        <span class="discount-badge">-15%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="key-card">
-                <img class="key-img" src="https://cdn.gameboost.com/igdb/covers/185258/co9rk1.jpg" alt="ARC Raiders">
-                <div class="key-body">
-                    <span class="key-meta">Global · Steam</span>
-                    <div class="key-title">ARC Raiders (Steam)</div>
-                    <div class="key-price-row">
-                        <span class="price-now">$33.10</span>
-                        <span class="price-old">$44.07</span>
-                        <span class="discount-badge">-25%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="key-card">
-                <img class="key-img" src="https://cdn.gameboost.com/igdb/covers/305152/co9gam.jpg" alt="Clair Obscur: Expedition 33">
-                <div class="key-body">
-                    <span class="key-meta">Global · Steam</span>
-                    <div class="key-title">Clair Obscur: Expedition 33</div>
-                    <div class="key-price-row">
-                        <span class="price-now">$26.90</span>
-                        <span class="price-old">$55.09</span>
-                        <span class="discount-badge">-51%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="key-card">
-                <img class="key-img" src="https://cdn.gameboost.com/igdb/covers/250630/co9nsc.jpg" alt="Marathon">
-                <div class="key-body">
-                    <span class="key-meta">Global · Steam</span>
-                    <div class="key-title">Marathon (Steam Key)</div>
-                    <div class="key-price-row">
-                        <span class="price-now">$13.58</span>
-                        <span class="price-old">$44.07</span>
-                        <span class="discount-badge">-69%</span>
-                    </div>
-                </div>
-            </div>
-            <div class="key-card">
-                <img class="key-img" src="https://cdn.gameboost.com/igdb/covers/250618/co6k3l.jpg" alt="Phantom Blade Zero">
-                <div class="key-body">
-                    <span class="key-meta">Global · Steam</span>
-                    <div class="key-title">Phantom Blade Zero (PC)</div>
-                    <div class="key-price-row">
-                        <span class="price-now">$56.63</span>
-                        <span class="price-old">$66.11</span>
-                        <span class="discount-badge">-14%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bento Features Section -->
-        <div class="section-header">
-            <div>
-                <h2>Gaming Services Just Got Better</h2>
-                <p>We are setting the new standard in the gaming marketplace industry</p>
-            </div>
-        </div>
-
-        <div class="bento-grid">
-            <div class="bento-card">
-                <img src="https://cdn.gameboost.com/static/illustrations/bento/dark-landing/1.png" alt="24/7 Support">
-                <div>
-                    <h3>Instant 24/7 Human Support</h3>
-                    <p>No bots — direct support and account verification with our experienced community admins.</p>
-                </div>
-            </div>
-            <div class="bento-card">
-                <img src="https://cdn.gameboost.com/static/illustrations/bento/dark-landing/2.png" alt="Best Value">
-                <div>
-                    <h3>Direct P2P Pricing & Value</h3>
-                    <p>Save more with direct peer-to-peer deals, full email access handover, and verified listings.</p>
-                </div>
-            </div>
-            <div class="bento-card">
-                <img src="https://cdn.gameboost.com/static/illustrations/bento/dark-landing/3.png" alt="Privacy">
-                <div>
-                    <h3>Full Privacy & Security</h3>
-                    <p>Every account transfer includes full login credentials and email ownership verification.</p>
-                </div>
-            </div>
-            <div class="bento-card">
-                <img src="https://cdn.gameboost.com/static/illustrations/bento/dark-landing/4.png" alt="Instant Payments">
-                <div>
-                    <h3>Fast & Flexible Payments</h3>
-                    <p>Verify the account details and complete your transaction smoothly with trusted payment options.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Customer Reviews -->
-        <div class="section-header" id="reviews-sec">
-            <div>
-                <h2>Trusted by Millions of Gamers Worldwide</h2>
-                <p>Excellent 4.9 out of 5.0 rating across our global trading community</p>
-            </div>
-        </div>
-
-        <div class="reviews-grid">
-            <div class="review-card">
-                <div class="review-user"><span>Lo*****00 · United States</span><span class="stars">★★★★★</span></div>
-                <p class="review-text">"Very amazing account, everything as described 10/10. Full email handover was super smooth!"</p>
-                <div class="review-badges"><span class="r-badge">Fast Delivery</span><span class="r-badge">Account as Described</span></div>
-            </div>
-            <div class="review-card">
-                <div class="review-user"><span>Ga*****uk · Croatia</span><span class="stars">★★★★★</span></div>
-                <p class="review-text">"11/10 best account ever! Checked all cards and skins in-game before finishing the deal."</p>
-                <div class="review-badges"><span class="r-badge">Fast Delivery</span><span class="r-badge">Good Communication</span></div>
-            </div>
-            <div class="review-card">
-                <div class="review-user"><span>Da*****lf · United States</span><span class="stars">★★★★★</span></div>
-                <p class="review-text">"Quick and easy, bought and got the account, everything was in order, no shady business 10/10."</p>
-                <div class="review-badges"><span class="r-badge">Verified Seller</span><span class="r-badge">Account as Described</span></div>
-            </div>
-            <div class="review-card">
-                <div class="review-user"><span>Fi*****zz · Australia</span><span class="stars">★★★★★</span></div>
-                <p class="review-text">"Account was perfectly described, seller helps you step by step and makes sure you get the account securely."</p>
-                <div class="review-badges"><span class="r-badge">Fast Delivery</span><span class="r-badge">24/7 Support</span></div>
-            </div>
-        </div>
-
-        <!-- GameVault in Numbers -->
-        <div class="stats-grid">
-            <div class="stat-box">
-                <h4>208,000+</h4>
-                <p>Active Facebook Group Members</p>
-            </div>
-            <div class="stat-box">
-                <h4>200+</h4>
-                <p>Supported Games & Categories</p>
-            </div>
-            <div class="stat-box">
-                <h4>99.9%</h4>
-                <p>Safe Full-Access Handovers</p>
-            </div>
-            <div class="stat-box">
-                <h4>24/7</h4>
-                <p>Direct Community Support</p>
-            </div>
-        </div>
-
-        <!-- Account Buyer/Seller Guide & FAQ -->
-        <div class="section-header" id="faq-sec">
-            <div>
-                <h2>Account Trading Rules & Frequently Asked Questions</h2>
-                <p>Important guidelines for buying and selling full-access game accounts on GameVault</p>
-            </div>
-        </div>
-
-        <div class="faq-grid">
-            <div class="faq-card">
-                <h3>What is GameVault?</h3>
-                <p>GameVault is an all-in-one gaming marketplace connected to our 208,000+ member Facebook community, offering top-quality game accounts, items, currencies, and boosting services.</p>
-            </div>
-            <div class="faq-card">
-                <h3>Full Access & Email Handover Policy</h3>
-                <p>Shared or rented accounts are strictly prohibited. Every account transaction includes full email access and login credentials so the buyer has 100% permanent ownership.</p>
-            </div>
-            <div class="faq-card">
-                <h3>What to Do After Getting Your Account?</h3>
-                <p>Log in immediately to verify all levels, skins, and items match the screenshots. Once verified, update the email password and enable Two-Factor Authentication (2FA) right away.</p>
-            </div>
-            <div class="faq-card">
-                <h3>How Can I Buy or Sell an Account?</h3>
-                <p>Click any game or service on this website to browse available offers or join our official Facebook community to trade securely.</p>
-            </div>
-        </div>
-
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-inner">
-            <div class="footer-links-grid">
-                <div class="footer-col">
-                    <h4>Popular Account Categories</h4>
-                    <ul>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Clash Royale Accounts</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Clash of Clans Accounts</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Fortnite Accounts</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Valorant Accounts</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">PUBG Mobile Accounts</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Brawl Stars Accounts</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Trending Mobile & PC</h4>
-                    <ul>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Free Fire Accounts</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Mobile Legends Accounts</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Call of Duty: Mobile</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Roblox Accounts & Robux</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Genshin Impact Accounts</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Grand Theft Auto V</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>GameVault Services</h4>
-                    <ul>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Buy & Sell Game Accounts</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">In-Game Currencies</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Instant Game Top Ups</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Rare In-Game Items</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Rank Boosting</a></li>
-                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Gift Cards & Keys</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Community & Support</h4>
-                    <ul>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Official Facebook Group (208K+)</a></li>
-                        <li><a href="#" onclick="scrollToSection('faq-sec')">Account Verification Guide</a></li>
-                        <li><a href="#" onclick="scrollToSection('faq-sec')">Direct P2P Trading Rules</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">24/7 Community Group Support</a></li>
-                    </ul>
-                </div>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+                <a href="#">Contact</a>
             </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 GameVault. All rights reserved.</p>
-                <p>Connected directly to our <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" style="color:#818cf8;font-weight:700;">Global Buy and Sell Facebook Community</a>.</p>
-            </div>
+            <p>&copy; 2026 Game-Vault Inc.</p>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-        const GROUP_URL = "https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT";
-
-        const trendingGames = [
-            { name: "Clash Royale", stock: "14,520 Accounts", logo: "https://cdn.gameboost.com/games/logos/clash-royale.png", tags: ["Accounts", "Boosting", "Gems"] },
-            { name: "Fortnite", stock: "22,800 Accounts", logo: "https://cdn.gameboost.com/games/logos/fortnite.png", tags: ["Accounts", "Items", "V-Bucks"] },
-            { name: "Valorant", stock: "20,613 Accounts", logo: "https://cdn.gameboost.com/games/logos/valorant.png", tags: ["Accounts", "Boosting", "Points", "Gift Cards"] },
-            { name: "Clash of Clans", stock: "16,910 Accounts", logo: "https://cdn.gameboost.com/games/logos/clash-of-clans.png", tags: ["Accounts", "Clans", "Gems"] },
-            { name: "PUBG Mobile", stock: "20,847 Accounts", logo: "https://cdn.gameboost.com/games/logos/pubg-mobile.png", tags: ["Accounts", "Items", "UC"] },
-            { name: "League of Legends", stock: "34,282 Accounts", logo: "https://cdn.gameboost.com/games/logos/league-of-legends.png", tags: ["Accounts", "Boosting", "Items", "Riot Points"] },
-            { name: "Brawl Stars", stock: "11,420 Accounts", logo: "https://cdn.gameboost.com/games/logos/brawl-stars.png", tags: ["Accounts", "Boosting", "Gems"] },
-            { name: "Grand Theft Auto V", stock: "5,422 Accounts", logo: "https://cdn.gameboost.com/games/logos/grand-theft-auto-v.png", tags: ["Accounts", "Items"] },
-            { name: "Call of Duty", stock: "7,521 Accounts", logo: "https://cdn.gameboost.com/games/logos/call-of-duty.png", tags: ["Accounts", "Items", "CoD Points"] },
-            { name: "Roblox", stock: "11,500 Accounts", logo: "https://cdn.gameboost.com/games/logos/roblox.png", tags: ["Accounts", "Robux", "Items", "Gift Cards"] },
-            { name: "Mobile Legends", stock: "8,940 Accounts", logo: "https://cdn.gameboost.com/games/logos/mobile-legends.png", tags: ["Accounts", "Diamonds", "Gift Cards"] },
-            { name: "Free Fire", stock: "6,761 Accounts", logo: "https://cdn.gameboost.com/games/logos/free-fire.png", tags: ["Accounts", "Diamonds"] },
-            { name: "Pokemon Go", stock: "4,890 Accounts", logo: "https://cdn.gameboost.com/games/logos/pokemon-go.png", tags: ["Accounts", "Items", "PokeCoins"] },
-            { name: "Genshin Impact", stock: "9,310 Accounts", logo: "https://cdn.gameboost.com/games/logos/genshin-impact.png", tags: ["Accounts", "Crystal"] },
-            { name: "Call of Duty: Mobile", stock: "4,489 Accounts", logo: "https://cdn.gameboost.com/games/logos/call-of-duty-mobile.png", tags: ["Accounts", "CP"] },
-            { name: "Counter Strike 2", stock: "3,644 Accounts", logo: "https://cdn.gameboost.com/games/logos/counter-strike-2.png", tags: ["Accounts", "Skins"] },
-            { name: "eFootball", stock: "2,190 Accounts", logo: "https://cdn.gameboost.com/games/logos/efootball.png", tags: ["Accounts", "Coins"] },
-            { name: "EA Sports FC 27", stock: "3,410 Accounts", logo: "https://cdn.gameboost.com/games/logos/fc-27.png", tags: ["Accounts", "Coins", "Points"] }
+        // Mock Data for the store
+        const games = [
+            { title: "Cyber Odyssey 2077", price: "$29.99", oldPrice: "$59.99" },
+            { title: "Elden Ring: Shadow", price: "$39.99", oldPrice: "$49.99" },
+            { title: "Starfield Premium", price: "$44.99", oldPrice: "$69.99" },
+            { title: "Call of Duty: MW3", price: "$34.99", oldPrice: "$69.99" },
+            { title: "Baldur's Gate 3", price: "$42.99", oldPrice: "$59.99" },
+            { title: "FIFA 24 Ultimate", price: "$24.99", oldPrice: "$69.99" },
+            { title: "GTA V: Premium Ed.", price: "$14.99", oldPrice: "$29.99" },
+            { title: "Minecraft Java", price: "$26.99", oldPrice: "$29.99" }
         ];
 
-        const allGamesList = [
-            ["Fortnite", "22,800"], ["Valorant", "20,613"], ["League of Legends", "34,282"], ["Clash of Clans", "16,910"],
-            ["Clash Royale", "14,520"], ["Grand Theft Auto V", "5,422"], ["Call of Duty", "7,521"], ["PUBG Mobile", "20,847"],
-            ["Raid: Shadow Legends", "11,270"], ["Brawl Stars", "11,420"], ["Roblox", "11,500"], ["Pokemon Go", "4,890"],
-            ["Mobile Legends", "8,940"], ["Genshin Impact", "9,310"], ["ARC Raiders", "1,420"], ["Steal a Brainrot", "1,400"],
-            ["DonutSMP", "980"], ["FC 27", "3,410"], ["Rocket League", "2,890"], ["Free Fire", "6,761"],
-            ["Wardogs", "410"], ["Adopt Me", "809"], ["Rainbow Six Siege", "6,614"], ["Summoners War", "2,531"],
-            ["Helldivers 2", "640"], ["NBA 2K", "1,120"], ["Telegram Stars", "950"], ["Apex Legends", "4,320"],
-            ["Hay Day", "1,890"], ["Murder Mystery 2", "1,340"], ["Dofus", "720"], ["Red Dead Redemption 2", "1,540"],
-            ["Blade Ball", "920"], ["Grow a Garden 2", "610"], ["WoW: Classic Era", "1,980"], ["Plants vs Brainrots", "430"],
-            ["Grow a Garden", "870"], ["Overwatch 2", "5,120"], ["Old School RuneScape", "3,780"], ["Rust", "4,110"],
-            ["Honkai: Star Rail", "3,290"], ["Minecraft", "5,640"], ["Dragon Ball Legends", "8,327"], ["Escape From Tarkov", "1,870"],
-            ["Forza Horizon 6", "940"], ["MapleStory", "1,150"], ["One Piece Bounty Rush", "2,813"], ["Dota 2", "3,190"],
-            ["War Thunder", "1,670"], ["Destiny 2", "2,040"], ["Squad Busters", "740"], ["World of Tanks", "2,310"],
-            ["XDefiant", "520"], ["Diablo 4", "1,950"], ["Warframe", "1,430"], ["Elder Scrolls Online", "1,280"],
-            ["Lost Ark", "1,190"], ["Fallout 76", "890"], ["Growtopia", "1,020"], ["Final Fantasy XIV", "1,360"],
-            ["Zenless Zone Zero", "2,140"], ["FC 25", "1,780"], ["World of Warcraft", "4,650"], ["WoW: Season of Discovery", "980"],
-            ["Teamfight Tactics", "1,410"], ["LoL: Wild Rift", "2,670"], ["Counter Strike 2", "3,644"], ["Rise of Kingdoms", "2,490"],
-            ["Black Desert", "1,320"], ["Last Epoch", "670"], ["DayZ", "1,180"], ["Monster Strike", "540"],
-            ["Boom Beach", "830"], ["Diablo II: Resurrected", "790"], ["Path of Exile", "1,620"], ["RuneScape 3", "1,450"],
-            ["ARK: Survival Evolved", "960"], ["New World", "840"], ["Animal Crossing: New Horizons", "410"], ["Albion Online", "2,130"],
-            ["Call of Duty: Mobile", "4,489"], ["Throne and Liberty", "300"], ["Diablo Immortal", "920"], ["Path of Exile 2", "1,850"],
-            ["Marvel Rivals", "2,740"], ["Dark and Darker", "610"], ["Deadlock", "780"], ["Wuthering Waves", "1,930"],
-            ["99 Nights in the Forest", "155"], ["FC 26", "2,840"], ["8 Ball Pool", "268"], ["Borderlands 4", "530"],
-            ["Blox Fruits", "4,120"], ["Arknights", "1,110"], ["Star Citizen", "690"], ["Pet Simulator 99", "1,560"],
-            ["Battlefield", "1,340"], ["eFootball", "2,190"], ["Pokemon TCG Pocket", "1,820"], ["Jailbreak", "740"],
-            ["Anime Vanguards", "680"], ["Roblox Rivals", "910"], ["Guild Wars 2", "870"], ["Dead By Daylight", "2,240"],
-            ["Elden Ring", "1,960"], ["EVE Online", "1,120"], ["Honor of Kings", "1,640"], ["Goddess of Victory: Nikke", "1,196"],
-            ["Epic Seven", "1,480"], ["Identity V", "1,090"], ["Blood Strike", "860"], ["Whiteout Survival", "1,310"],
-            ["Delta Force", "1,170"], ["Bleach: Brave Souls", "940"], ["Cookie Run: Kingdom", "1,426"], ["The Seven Deadly Sins", "1,793"],
-            ["Dragon Ball Z Dokkan Battle", "2,350"], ["Sea of Thieves", "809"], ["Yu-Gi-Oh! Master Duel", "1,260"], ["EA Sports FC Mobile", "3,180"],
-            ["All Star Tower Defense X", "70"], ["Watcher of Realms", "620"], ["Fate/Grand Order", "2,080"], ["Marvel Contest of Champions", "1,540"],
-            ["World of Warships", "980"], ["Monopoly Go", "1,750"], ["Last War: Survival", "1,140"], ["Car Parking Multiplayer", "354"],
-            ["Standoff 2", "1,290"], ["BGMI", "3,890"], ["Honkai Impact 3rd", "1,160"], ["One Piece Treasure Cruise", "970"],
-            ["King Legacy", "840"], ["Grand Piece Online", "760"], ["Forza Horizon 5", "1,680"], ["Solo Leveling: Arise", "1,430"],
-            ["The Finals", "820"], ["Lords Mobile", "1,910"], ["The Division 2", "730"], ["Black Clover M", "580"],
-            ["Sky: Children of the Light", "161"], ["Monster Hunter Now", "640"], ["Discord", "1,450"], ["AFK Journey", "890"],
-            ["Captain Tsubasa: Dream Team", "45"], ["Hearthstone", "1,380"], ["Mortal Kombat Mobile", "920"], ["Team Fortress 2", "1,150"],
-            ["Tower of Fantasy", "740"], ["Arena Breakout", "1,230"], ["PUBG Battlegrounds", "2,640"], ["Rush Royale", "1,080"],
-            ["AFK Arena", "1,340"], ["Call of Dragons", "690"], ["Marvel Snap", "1,120"], ["Marvel Future Fight", "870"],
-            ["War Robot", "760"], ["Idle Hero", "650"], ["Mech Arena", "590"], ["Empires & Puzzles", "810"], ["Palworld", "940"]
-        ];
+        const grid = document.getElementById('gamesGrid');
 
-        let activeLetter = "ALL";
-
-        function renderTrending() {
-            const container = document.getElementById("trending-grid");
-            container.innerHTML = trendingGames.map(g => `
-                <div class="popular-card" onclick="scrollToSection('accounts-hub')">
-                    <div class="pop-top">
-                        <img src="${g.logo}" alt="${g.name}" onerror="this.src='https://cdn.gameboost.com/static/game-services/accounts.webp'">
-                        <div class="pop-title">
-                            <h3>${g.name}</h3>
-                            <span class="stock-tag">● ${g.stock}</span>
-                        </div>
+        // Generate cards dynamically
+        games.forEach(game => {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            
+            card.innerHTML = `
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <div class="game-title">${game.title}</div>
+                    <div class="price-row">
+                        <span class="current-price">${game.price}</span>
+                        <span class="old-price">${game.oldPrice}</span>
                     </div>
-                    <div class="sub-tags">
-                        ${g.tags.map(t => `<span class="sub-tag">${t}</span>`).join("")}
-                    </div>
+                    <button class="btn-buy">Add to Cart</button>
                 </div>
-            `).join("");
-        }
+            `;
+            grid.appendChild(card);
+        });
 
-        function renderAZBar() {
-            const letters = ["ALL", ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")];
-            const bar = document.getElementById("azBar");
-            bar.innerHTML = letters.map(l => `
-                <button class="az-btn ${l === activeLetter ? 'active' : ''}" onclick="setLetter('${l}')">${l}</button>
-            `).join("");
-        }
-
-        function setLetter(letter) {
-            activeLetter = letter;
-            renderAZBar();
-            filterGames();
-        }
-
-        function filterGames() {
-            const query = document.getElementById("gameSearch").value.toLowerCase().trim();
-            const grid = document.getElementById("directoryGrid");
-
-            const filtered = allGamesList.filter(([name]) => {
-                const matchesQuery = name.toLowerCase().includes(query);
-                const matchesLetter = activeLetter === "ALL" || name.toUpperCase().startsWith(activeLetter);
-                return matchesQuery && matchesLetter;
+        // Simple Search Filter
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.game-card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.game-title').textContent.toLowerCase();
+                if(title.includes(term)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
             });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `<div class="dir-item" style="grid-column: 1/-1; justify-content:center; padding: 1.5rem;">
-                    <span class="dir-name">No exact match found in catalog.</span>
-                </div>`;
-                return;
-            }
-
-            grid.innerHTML = filtered.map(([name, count]) => `
-                <div class="dir-item" onclick="scrollToSection('accounts-hub')">
-                    <span class="dir-name">${name}</span>
-                    <span class="dir-count">${count} Accounts</span>
-                </div>
-            `).join("");
-        }
-
-        function scrollToSection(id) {
-            const el = document.getElementById(id);
-            if (el) el.scrollIntoView({ behavior: "smooth" });
-        }
-
-        renderTrending();
-        renderAZBar();
-        filterGames();
+        });
     </script>
+
 </body>
 </html>
