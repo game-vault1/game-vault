@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameVault - The All-In-One Platform for Gamers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>GameVault - Accounts, Currencies, Top Ups, Items, Boosting, Gift Cards & Keys</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #131826;
-            --card-hover: #1c2438;
-            --accent-color: #6366f1;
+            --bg-main: #090d16;
+            --bg-secondary: #0f1523;
+            --card-bg: #141c2e;
+            --card-hover: #1b263e;
+            --border: #23304c;
+            --accent: #6366f1;
             --accent-hover: #4f46e5;
+            --green: #10b981;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --border-color: #1e293b;
-            --success-color: #22c55e;
+            --badge-bg: rgba(99, 102, 241, 0.15);
         }
 
         * {
@@ -26,331 +28,636 @@
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-main);
             color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Promo Banner */
+        .promo-bar {
+            background: linear-gradient(90deg, #312e81, #4f46e5, #7e22ce);
+            color: #fff;
+            text-align: center;
+            padding: 0.55rem 1rem;
+            font-size: 0.84rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .promo-bar .badge {
+            background: #fff;
+            color: #090d16;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 0.72rem;
+        }
+
+        /* Sticky Header */
         header {
-            background-color: rgba(19, 24, 38, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
+            background: rgba(9, 13, 22, 0.94);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 0.85rem 1.5rem;
+        }
+
+        .nav-container {
+            max-width: 1340px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .brand-left {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-main);
-            text-decoration: none;
+            font-size: 1.55rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
             display: flex;
             align-items: center;
-            gap: 0.25rem;
+            gap: 0.4rem;
+        }
+
+        .logo-icon {
+            width: 34px;
+            height: 34px;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.05rem;
+            color: #fff;
         }
 
         .logo span {
-            color: var(--accent-color);
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.35rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 0.48rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
+            background: transparent;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            color: var(--text-main);
+            background: var(--card-bg);
+            border-color: var(--accent);
         }
 
         .nav-actions {
             display: flex;
-            gap: 1rem;
             align-items: center;
+            gap: 0.65rem;
         }
 
         .btn {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 0.6rem 1.2rem;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.58rem 1.1rem;
             border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: background 0.2s, transform 0.1s;
-            display: inline-block;
+            font-weight: 700;
+            font-size: 0.86rem;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
             border: none;
             cursor: pointer;
         }
 
         .btn:hover {
-            background-color: var(--accent-hover);
+            background: var(--accent-hover);
+            transform: translateY(-1px);
         }
 
         .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             color: var(--text-main);
         }
 
         .btn-outline:hover {
-            border-color: var(--accent-color);
-            background-color: rgba(99, 102, 241, 0.1);
+            border-color: var(--accent);
+            background: var(--card-hover);
         }
 
+        /* Hero Section */
         .hero {
-            padding: 4rem 2rem 2rem;
+            padding: 3.2rem 1.5rem 2.2rem;
             text-align: center;
-            max-width: 900px;
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.24), transparent 65%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-inner {
+            max-width: 1080px;
             margin: 0 auto;
         }
 
+        .trust-pills {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.55rem 1.15rem;
+            background: rgba(20, 28, 46, 0.85);
+            border: 1px solid var(--border);
+            padding: 0.48rem 1.15rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1.35rem;
+        }
+
+        .trust-pills span b {
+            color: var(--green);
+        }
+
         .hero h1 {
-            font-size: 2.75rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -0.025em;
+            font-size: 2.65rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.7rem;
         }
 
         .hero h1 span {
-            background: linear-gradient(to right, #6366f1, #a855f7);
+            background: linear-gradient(90deg, #818cf8, #c084fc);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            font-size: 1.15rem;
+        .hero-sub {
             color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 2rem;
+            font-size: 1.02rem;
+            max-width: 780px;
+            margin: 0 auto 2rem;
         }
 
-        .trust-bar {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .trust-item span {
-            color: var(--success-color);
-            font-weight: bold;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem 4rem;
-            flex: 1;
-            width: 100%;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 0.75rem;
-        }
-
-        .services-grid {
+        /* 7 Service Switcher Strip */
+        .service-strip {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.7rem;
+            max-width: 1120px;
+            margin: 0 auto;
         }
 
-        .service-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
+        .service-pill {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: all 0.2s ease;
+            padding: 0.85rem 0.6rem;
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            align-items: center;
+            gap: 0.45rem;
+            transition: 0.2s;
+            cursor: pointer;
+            user-select: none;
         }
 
-        .service-card:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-3px);
-            background-color: var(--card-hover);
+        .service-pill:hover, .service-pill.active-service {
+            border-color: var(--accent);
+            background: var(--card-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.18);
         }
 
-        .service-card h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
+        .service-pill img {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
         }
 
-        .service-card p {
-            font-size: 0.875rem;
+        .service-pill span {
+            font-weight: 700;
+            font-size: 0.86rem;
+        }
+
+        .service-pill small {
+            font-size: 0.7rem;
             color: var(--text-muted);
         }
 
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        /* Main Container */
+        .container {
+            max-width: 1340px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 1.4rem;
+            flex-wrap: wrap;
             gap: 1rem;
         }
 
-        .game-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 60px;
+        .section-header h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
-        .game-card:hover {
-            border-color: var(--accent-color);
-            background-color: var(--card-hover);
-            color: var(--accent-color);
-        }
-
-        footer {
-            background-color: var(--card-bg);
-            border-top: 1px solid var(--border-color);
-            padding: 2rem;
-            text-align: center;
+        .section-header p {
             color: var(--text-muted);
             font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+
+        /* Featured Cards Grid */
+        .popular-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .popular-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.15rem;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 0.95rem;
+        }
+
+        .popular-card:hover {
+            border-color: var(--accent);
+            background: var(--card-hover);
+            transform: translateY(-3px);
+        }
+
+        .pop-top {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .pop-top img {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            object-fit: contain;
+            background: #090d16;
+            padding: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .pop-title h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .stock-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: var(--green);
+            font-weight: 600;
+            margin-top: 0.1rem;
+        }
+
+        .sub-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .sub-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            padding: 0.28rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: 0.15s;
+        }
+
+        .sub-tag:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* Filter & Search Bar */
+        .filter-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 1.2rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 0.95rem;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 240px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.78rem 1rem;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+        }
+
+        .az-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.32rem;
+        }
+
+        .az-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.32rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .az-btn:hover, .az-btn.active {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* Directory Grid */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.7rem;
+            margin-bottom: 3.2rem;
+        }
+
+        .dir-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.78rem 0.95rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.15s;
+        }
+
+        .dir-item:hover {
+            border-color: var(--accent);
+            background: var(--card-hover);
+        }
+
+        .dir-name {
+            font-size: 0.86rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dir-count {
+            background: var(--badge-bg);
+            color: #818cf8;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.2rem 0.48rem;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        /* Game Keys Cover Grid */
+        .keys-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.1rem;
+            margin-bottom: 3.2rem;
+        }
+
+        .key-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .key-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .key-img {
+            width: 100%;
+            height: 145px;
+            object-fit: cover;
+            background: #090d16;
+        }
+
+        .key-body {
+            padding: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            flex: 1;
+        }
+
+        .key-meta {
+            font-size: 0.73rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .key-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .key-price-row {
             margin-top: auto;
+            padding-top: 0.55rem;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
         }
 
-        footer p {
-            margin-bottom: 0.5rem;
+        .price-now {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #fff;
         }
 
-        footer a {
-            color: var(--accent-color);
-            text-decoration: none;
+        .price-old {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .discount-badge {
+            margin-left: auto;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--green);
+            font-size: 0.73rem;
+            font-weight: 800;
+            padding: 0.18rem 0.42rem;
+            border-radius: 5px;
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .hero {
-                padding: 2rem 1rem 1rem;
-            }
-            header {
-                padding: 1rem;
-            }
+        /* Bento & Trust Features */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.15rem;
+            margin-bottom: 3.2rem;
         }
-    </style>
-</head>
-<body>
 
-    <!-- Header -->
-    <header>
-        <a href="https://game-vault1.github.io/game-vault/" class="logo">Game<span>Vault</span></a>
-        <div class="nav-actions">
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn btn-outline">Join Community</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn">Trade Now</a>
-        </div>
-    </header>
+        .bento-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 0.9rem;
+        }
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>The All-In-One Platform for <span>Gamers</span></h1>
-        <p>GameVault is a global gaming platform, trusted by millions of gamers worldwide, offering instant access to game accounts, game keys, gift cards, in-game items, currencies, top ups, and boosting — all from verified partners. Designed for speed, safety, and simplicity.</p>
-        
-        <div class="trust-bar">
-            <div class="trust-item"><span>✔</span> Instant P2P Delivery</div>
-            <div class="trust-item"><span>✔</span> 24/7 Human Support</div>
-            <div class="trust-item"><span>✔</span> Verified Community Members</div>
-        </div>
-    </section>
+        .bento-card img {
+            width: 100%;
+            max-height: 130px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
 
-    <!-- Main Container -->
-    <div class="container">
-        
-        <!-- Services Section -->
-        <h2 class="section-title">Services</h2>
-        <div class="services-grid">
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-card">
-                <h3>Accounts</h3>
-                <p>Game accounts for various titles</p>
-            </a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-card">
-                <h3>Currencies</h3>
-                <p>Buy in-game currencies securely</p>
-            </a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-card">
-                <h3>Top Ups</h3>
-                <p>Top up your accounts easily</p>
-            </a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-card">
-                <h3>Items</h3>
-                <p>In-game items for your favorite games</p>
-            </a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-card">
-                <h3>Boosting</h3>
-                <p>Professional boosting services</p>
-            </a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-card">
-                <h3>Gift Cards</h3>
-                <p>Codes for all games and platforms</p>
-            </a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-card">
-                <h3>Game Keys</h3>
-                <p>Purchase game keys instantly</p>
-            </a>
-        </div>
+        .bento-card h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+        }
 
-        <!-- Available Games Section -->
-        <h2 class="section-title">Available Games</h2>
-        <div class="games-grid">
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Fortnite</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Valorant</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">League of Legends</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Clash of Clans</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Grand Theft Auto V</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Call of Duty</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">PUBG Mobile</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Raid: Shadow Legends</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Brawl Stars</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Roblox</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Pokemon Go</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Mobile Legends</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Genshin Impact</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Clash Royale</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Free Fire</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Minecraft</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Dota 2</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Counter Strike 2</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">Elden Ring</a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="game-card">World of Warcraft</a>
-        </div>
+        .bento-card p {
+            color: var(--text-muted);
+            font-size: 0.86rem;
+        }
 
-    </div>
+        /* Dynamic FAQ Grid */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3.2rem;
+        }
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 GameVault. All rights reserved.</p>
-        <p>Managed securely via our <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Official Facebook Community</a>.</p>
-    </footer>
+        .faq-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.3rem;
+        }
 
-</body>
-</html>
+        .faq-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.45rem;
+            color: #fff;
+        }
+
+        .faq-card p {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+        }
+
+        /* Reviews Grid */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3.2rem;
+        }
+
+        .review-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.15rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .review-user {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.83rem;
+            font-weight: 700;
+        }
+
+        .stars {
+            color: #10b981;
+            font-weight: 800;
+        }
+
+        .review-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .review-badges {
+            display: flex;
+            flex
