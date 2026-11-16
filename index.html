@@ -375,6 +375,7 @@
             flex-direction: column;
             justify-content: space-between;
             gap: 1rem;
+            cursor: pointer;
         }
 
         .popular-card:hover {
@@ -426,13 +427,6 @@
             font-size: 0.78rem;
             font-weight: 600;
             color: var(--text-muted);
-            transition: 0.15s;
-        }
-
-        .sub-tag:hover {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
         }
 
         /* Full 200+ Game Accounts Directory Grid */
@@ -453,6 +447,7 @@
             align-items: center;
             gap: 0.5rem;
             transition: 0.15s;
+            cursor: pointer;
         }
 
         .dir-item:hover {
@@ -768,7 +763,7 @@
     <header>
         <div class="nav-container">
             <div class="brand-left">
-                <a href="https://game-vault1.github.io/game-vault/" class="logo">
+                <a href="#" class="logo">
                     <span class="logo-icon">GV</span> Game<span>Vault</span>
                 </a>
                 <nav class="nav-links">
@@ -780,7 +775,7 @@
                 </nav>
             </div>
             <div class="nav-actions">
-                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn btn-outline">Sell Account</a>
+                <button class="btn btn-outline" onclick="scrollToSection('accounts-hub')">Sell Account</button>
                 <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn">Join 208K+ Group</a>
             </div>
         </div>
@@ -800,43 +795,43 @@
                 Buy game accounts for 200+ titles on GameVault, from Fortnite, Clash Royale, and Valorant to Roblox and Clash of Clans, with ranks, skins, and progress ready to explore by game.
             </p>
 
-            <!-- Official GameBoost Service Icons Strip -->
+            <!-- Official GameVault Service Icons Strip -->
             <div class="service-strip">
-                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-pill active-service">
+                <a href="https://gameboost.com/services/game-accounts" target="_blank" class="service-pill active-service">
                     <img src="https://cdn.gameboost.com/static/game-services/accounts.webp" alt="Accounts">
                     <span>Accounts</span>
                     <small>22.8K+ in stock</small>
                 </a>
-                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-pill">
+                <a href="https://gameboost.com/services/game-currencies" target="_blank" class="service-pill">
                     <img src="https://cdn.gameboost.com/static/game-services/currencies.webp" alt="Currencies">
                     <span>Currencies</span>
                     <small>Cheapest deals</small>
                 </a>
-                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-pill">
+                <div class="service-pill" onclick="scrollToSection('accounts-hub')">
                     <img src="https://cdn.gameboost.com/static/game-services/top-ups.webp" alt="Top Ups">
                     <span>Top Ups</span>
                     <small>Instant balance</small>
-                </a>
-                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-pill">
+                </div>
+                <div class="service-pill" onclick="scrollToSection('accounts-hub')">
                     <img src="https://cdn.gameboost.com/static/game-services/items.webp" alt="Items">
                     <span>Items</span>
                     <small>20.8K+ in stock</small>
-                </a>
-                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-pill">
+                </div>
+                <div class="service-pill" onclick="scrollToSection('accounts-hub')">
                     <img src="https://cdn.gameboost.com/static/game-services/boosting.webp" alt="Boosting">
                     <span>Boosting</span>
                     <small>Pro rank up</small>
-                </a>
-                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-pill">
+                </div>
+                <div class="service-pill" onclick="scrollToSection('accounts-hub')">
                     <img src="https://cdn.gameboost.com/static/game-services/gift-cards.webp" alt="Gift Cards">
                     <span>Gift Cards</span>
                     <small>All platforms</small>
-                </a>
-                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="service-pill">
+                </div>
+                <div class="service-pill" onclick="scrollToSection('game-keys')">
                     <img src="https://cdn.gameboost.com/static/game-services/games.webp" alt="Game Keys">
                     <span>Game Keys</span>
                     <small>Global Steam/EA</small>
-                </a>
+                </div>
             </div>
         </div>
     </section>
@@ -844,18 +839,18 @@
     <!-- Main Content -->
     <div class="container">
 
-        <!-- Trending Game Accounts (With Logos & Stock Counts) -->
+        <!-- Trending Game Accounts -->
         <div class="section-header" id="popular-games">
             <div>
                 <h2>Trending Game Accounts</h2>
                 <p>Most popular games with verified accounts, skins, and currencies ready for instant handover</p>
             </div>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn btn-outline">View All Offers →</a>
+            <button class="btn btn-outline" onclick="scrollToSection('accounts-hub')">View All Offers →</button>
         </div>
 
         <div class="popular-grid" id="trending-grid"></div>
 
-        <!-- All Game Accounts A-Z Directory (/services/game-accounts) -->
+        <!-- All Game Accounts A-Z Directory -->
         <div class="section-header" id="accounts-hub">
             <div>
                 <h2>All Game Accounts Directory (200+ Games)</h2>
@@ -866,7 +861,7 @@
         <div class="filter-box">
             <div class="search-row">
                 <input type="text" id="gameSearch" class="search-input" placeholder="Search 200+ games (e.g., Clash Royale, Fortnite, Valorant, PUBG, Roblox)..." oninput="filterGames()">
-                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn">Request Custom Account</a>
+                <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn">Join 208K+ Group</a>
             </div>
             <div class="az-bar" id="azBar"></div>
         </div>
@@ -879,11 +874,11 @@
                 <h2>Trending Game Keys</h2>
                 <p>Instant global digital keys for Steam, EA App, and consoles</p>
             </div>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="btn btn-outline">View All Game Keys</a>
+            <button class="btn btn-outline" onclick="scrollToSection('game-keys')">View All Game Keys</button>
         </div>
 
         <div class="keys-grid">
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="key-card">
+            <div class="key-card">
                 <img class="key-img" src="https://cdn.gameboost.com/igdb/covers/408819/cock5c.jpg" alt="EA SPORTS FC 27">
                 <div class="key-body">
                     <span class="key-meta">Global · EA Launcher</span>
@@ -894,8 +889,8 @@
                         <span class="discount-badge">-15%</span>
                     </div>
                 </div>
-            </a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="key-card">
+            </div>
+            <div class="key-card">
                 <img class="key-img" src="https://cdn.gameboost.com/igdb/covers/185258/co9rk1.jpg" alt="ARC Raiders">
                 <div class="key-body">
                     <span class="key-meta">Global · Steam</span>
@@ -906,8 +901,8 @@
                         <span class="discount-badge">-25%</span>
                     </div>
                 </div>
-            </a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="key-card">
+            </div>
+            <div class="key-card">
                 <img class="key-img" src="https://cdn.gameboost.com/igdb/covers/305152/co9gam.jpg" alt="Clair Obscur: Expedition 33">
                 <div class="key-body">
                     <span class="key-meta">Global · Steam</span>
@@ -918,8 +913,8 @@
                         <span class="discount-badge">-51%</span>
                     </div>
                 </div>
-            </a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="key-card">
+            </div>
+            <div class="key-card">
                 <img class="key-img" src="https://cdn.gameboost.com/igdb/covers/250630/co9nsc.jpg" alt="Marathon">
                 <div class="key-body">
                     <span class="key-meta">Global · Steam</span>
@@ -930,8 +925,8 @@
                         <span class="discount-badge">-69%</span>
                     </div>
                 </div>
-            </a>
-            <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" class="key-card">
+            </div>
+            <div class="key-card">
                 <img class="key-img" src="https://cdn.gameboost.com/igdb/covers/250618/co6k3l.jpg" alt="Phantom Blade Zero">
                 <div class="key-body">
                     <span class="key-meta">Global · Steam</span>
@@ -942,7 +937,7 @@
                         <span class="discount-badge">-14%</span>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
 
         <!-- Bento Features Section -->
@@ -1058,7 +1053,7 @@
             </div>
             <div class="faq-card">
                 <h3>How Can I Buy or Sell an Account?</h3>
-                <p>Click any game or service on this website to open our official Global Buy and Sell Facebook group, where you can browse live listings or message directly to trade.</p>
+                <p>Click any game or service on this website to browse available offers or join our official Facebook community to trade securely.</p>
             </div>
         </div>
 
@@ -1071,49 +1066,49 @@
                 <div class="footer-col">
                     <h4>Popular Account Categories</h4>
                     <ul>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Clash Royale Accounts</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Clash of Clans Accounts</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Fortnite Accounts</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Valorant Accounts</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">PUBG Mobile Accounts</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Brawl Stars Accounts</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Clash Royale Accounts</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Clash of Clans Accounts</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Fortnite Accounts</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Valorant Accounts</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">PUBG Mobile Accounts</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Brawl Stars Accounts</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Trending Mobile & PC</h4>
                     <ul>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Free Fire Accounts</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Mobile Legends Accounts</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Call of Duty: Mobile</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Roblox Accounts & Robux</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Genshin Impact Accounts</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Grand Theft Auto V</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Free Fire Accounts</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Mobile Legends Accounts</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Call of Duty: Mobile</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Roblox Accounts & Robux</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Genshin Impact Accounts</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Grand Theft Auto V</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>GameVault Services</h4>
                     <ul>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Buy & Sell Game Accounts</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">In-Game Currencies</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Instant Game Top Ups</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Rare In-Game Items</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Rank Boosting</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Gift Cards & Keys</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Buy & Sell Game Accounts</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">In-Game Currencies</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Instant Game Top Ups</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Rare In-Game Items</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Rank Boosting</a></li>
+                        <li><a href="#" onclick="scrollToSection('accounts-hub')">Gift Cards & Keys</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Community & Support</h4>
                     <ul>
                         <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Official Facebook Group (208K+)</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Account Verification Guide</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">Direct P2P Trading Rules</a></li>
-                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">24/7 Admin Help Center</a></li>
+                        <li><a href="#" onclick="scrollToSection('faq-sec')">Account Verification Guide</a></li>
+                        <li><a href="#" onclick="scrollToSection('faq-sec')">Direct P2P Trading Rules</a></li>
+                        <li><a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank">24/7 Community Group Support</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2026 GameVault (<a href="https://game-vault1.github.io/game-vault/" style="color:#818cf8;">game-vault1.github.io/game-vault</a>). All rights reserved.</p>
+                <p>&copy; 2026 GameVault. All rights reserved.</p>
                 <p>Connected directly to our <a href="https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT" target="_blank" style="color:#818cf8;font-weight:700;">Global Buy and Sell Facebook Community</a>.</p>
             </div>
         </div>
@@ -1122,7 +1117,6 @@
     <script>
         const GROUP_URL = "https://www.facebook.com/groups/www.facebook.com.global.buy.and.sell.ss/?ref=share&mibextid=NSMWBT";
 
-        // Trending Games with Official GameBoost CDN Logos & Sub-links
         const trendingGames = [
             { name: "Clash Royale", stock: "14,520 Accounts", logo: "https://cdn.gameboost.com/games/logos/clash-royale.png", tags: ["Accounts", "Boosting", "Gems"] },
             { name: "Fortnite", stock: "22,800 Accounts", logo: "https://cdn.gameboost.com/games/logos/fortnite.png", tags: ["Accounts", "Items", "V-Bucks"] },
@@ -1144,7 +1138,6 @@
             { name: "EA Sports FC 27", stock: "3,410 Accounts", logo: "https://cdn.gameboost.com/games/logos/fc-27.png", tags: ["Accounts", "Coins", "Points"] }
         ];
 
-        // Full 200+ Games Catalog from GameBoost Accounts Directory
         const allGamesList = [
             ["Fortnite", "22,800"], ["Valorant", "20,613"], ["League of Legends", "34,282"], ["Clash of Clans", "16,910"],
             ["Clash Royale", "14,520"], ["Grand Theft Auto V", "5,422"], ["Call of Duty", "7,521"], ["PUBG Mobile", "20,847"],
@@ -1193,16 +1186,16 @@
         function renderTrending() {
             const container = document.getElementById("trending-grid");
             container.innerHTML = trendingGames.map(g => `
-                <div class="popular-card">
-                    <a href="${GROUP_URL}" target="_blank" class="pop-top">
+                <div class="popular-card" onclick="scrollToSection('accounts-hub')">
+                    <div class="pop-top">
                         <img src="${g.logo}" alt="${g.name}" onerror="this.src='https://cdn.gameboost.com/static/game-services/accounts.webp'">
                         <div class="pop-title">
                             <h3>${g.name}</h3>
                             <span class="stock-tag">● ${g.stock}</span>
                         </div>
-                    </a>
+                    </div>
                     <div class="sub-tags">
-                        ${g.tags.map(t => `<a href="${GROUP_URL}" target="_blank" class="sub-tag">${t}</a>`).join("")}
+                        ${g.tags.map(t => `<span class="sub-tag">${t}</span>`).join("")}
                     </div>
                 </div>
             `).join("");
@@ -1233,17 +1226,17 @@
             });
 
             if (filtered.length === 0) {
-                grid.innerHTML = `<a href="${GROUP_URL}" target="_blank" class="dir-item" style="grid-column: 1/-1; justify-content:center; padding: 1.5rem;">
-                    <span class="dir-name">No exact match found — Click here to request this game account in our 208K+ Facebook Group!</span>
-                </a>`;
+                grid.innerHTML = `<div class="dir-item" style="grid-column: 1/-1; justify-content:center; padding: 1.5rem;">
+                    <span class="dir-name">No exact match found in catalog.</span>
+                </div>`;
                 return;
             }
 
             grid.innerHTML = filtered.map(([name, count]) => `
-                <a href="${GROUP_URL}" target="_blank" class="dir-item">
+                <div class="dir-item" onclick="scrollToSection('accounts-hub')">
                     <span class="dir-name">${name}</span>
                     <span class="dir-count">${count} Accounts</span>
-                </a>
+                </div>
             `).join("");
         }
 
